@@ -13,6 +13,7 @@
            <pm:content>
    
 		    <h:form>
+		    
 				<p:panel header="Portal do Cliente">
 				
 					<p:commandButton value="Gerar Senha Normal" id="btnSenhaNormal" update="panelSenha, listaSenhasNormais" actionListener="#{gerenciarSenhas.gerarSenhaNormal}" styleClass="ui-priority-primary" oncomplete="PF('senhaDialog').show();"/>
@@ -50,10 +51,13 @@
 					<p:dialog header="Senha Gerada" widgetVar="senhaDialog" minHeight="40" resizable="false">
 						<h:outputText id="panelSenha" value="#{gerenciarSenhas.senha}" />
 					</p:dialog>
-					
-					<p:notificationBar position="bottom" effect="slide" styleClass="top" widgetVar="bar" autoDisplay="true">
-						<p:outputLabel id="panelProximaSenha" style="font-size:36px;" value="SENHA: #{gerenciarSenhas.proximaSenha.cdSenha}" />
+				
+					<p:poll interval="2" update="panelProximaSenha, listaSenhasNormais, listaSenhasPreferenciais" autoStart="true" />
+
+					<p:notificationBar position="bottom" effect="slide" styleClass="top" widgetVar="bar" autoDisplay="true">	
+						<p:outputLabel id="panelProximaSenha" style="font-size:36px;" value="SENHA: #{gerenciarSenhas.proximaSenha.cdSenha}"/>
 					</p:notificationBar>
+				
 			
 				</p:panel>
 			</h:form>

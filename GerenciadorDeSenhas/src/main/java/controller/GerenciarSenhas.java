@@ -82,6 +82,7 @@ public class GerenciarSenhas {
 		else {
 			proximaSenha = null;
 		}
+		
 	}
 	
 	public void addMessageInfo(String summary) {

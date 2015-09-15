@@ -50,6 +50,8 @@
 					<p:outputLabel id="panelProximaSenhaDialog" value="#{gerenciarSenhas.proximaSenha.cdSenha}" />
 				</p:dialog>
 				
+				<p:poll interval="2" update="panelProximaSenha, listaSenhasNormais, listaSenhasPreferenciais" autoStart="true" />
+				
 				<p:notificationBar position="bottom" effect="slide" styleClass="top" widgetVar="bar" autoDisplay="true">
 					<p:outputLabel id="panelProximaSenha" style="font-size:36px;" value="SENHA: #{gerenciarSenhas.proximaSenha.cdSenha}" />
 				</p:notificationBar>
