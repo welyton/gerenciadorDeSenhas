@@ -1,0 +1,63 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+    renderKitId="PRIMEFACES_MOBILE">
+ 
+    <pm:page title="Components">
+  
+           <pm:header title="Gerenciador de Senhas" swatch="b" />
+
+           <pm:content>
+   
+		    <h:form>
+				<p:panel header="Portal do Cliente">
+				
+					<p:commandButton value="Gerar Senha Normal" id="btnSenhaNormal" update="panelSenha, listaSenhasNormais" actionListener="#{gerenciarSenhas.gerarSenhaNormal}" styleClass="ui-priority-primary" oncomplete="PF('senhaDialog').show();"/>
+			
+					<p:commandButton value="Gerar Senha Preferêncial" id="btnSenhaPreferencial" update="panelSenha, listaSenhasPreferenciais" actionListener="#{gerenciarSenhas.gerarSenhaPreferencial}" styleClass="ui-priority-primary" oncomplete="PF('senhaDialog').show();"/>
+			
+					<p:dataTable id="listaSenhasPreferenciais" value="#{gerenciarSenhas.listaSenhasPreferenciais}" var="senha" emptyMessage="Não Há Senhas a serem chamadas!">
+			       		<f:facet name="header">
+			          		Senhas Preferenciais
+			       		</f:facet>
+			       		<p:column headerText="Senha">
+			     			<h:outputText value="#{senha.cdSenha}" />
+			  			</p:column>
+			  			<p:column headerText="Hora Chegada">
+			     			<h:outputText value="#{senha.dtHrGeracao}">
+			                	<f:convertDateTime pattern="HH:mm" locale="pt_BR" timeZone="GMT-03:00"/>
+			           		</h:outputText>
+			  			</p:column>
+			   		</p:dataTable>
+			   		
+			   		<p:dataTable id="listaSenhasNormais" value="#{gerenciarSenhas.listaSenhasNormais}" var="senha" emptyMessage="Não Há Senhas a serem chamadas!">
+			       		<f:facet name="header">
+			          		Senhas Normais
+			       		</f:facet>
+			       		<p:column headerText="Senha">
+			     			<h:outputText value="#{senha.cdSenha}" />
+			  			</p:column>
+			  			<p:column headerText="Hora Chegada">
+			     			<h:outputText value="#{senha.dtHrGeracao}">
+			                	<f:convertDateTime pattern="HH:mm" locale="pt_BR" timeZone="GMT-03:00"/>
+			           		</h:outputText>
+			  			</p:column>
+			   		</p:dataTable>
+			
+					<p:dialog header="Senha Gerada" widgetVar="senhaDialog" minHeight="40" resizable="false">
+						<h:outputText id="panelSenha" value="#{gerenciarSenhas.senha}" />
+					</p:dialog>
+					
+					<p:notificationBar position="bottom" effect="slide" styleClass="top" widgetVar="bar" autoDisplay="true">
+						<p:outputLabel id="panelProximaSenha" style="font-size:36px;" value="SENHA: #{gerenciarSenhas.proximaSenha.cdSenha}" />
+					</p:notificationBar>
+			
+				</p:panel>
+			</h:form>
+		</pm:content>
+
+	</pm:page>
+</f:view>

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<link rel="stylesheet" href="css/bootstrap.css" type="text/css"
+		media="all" />
+	<link rel="stylesheet" href="css/bootstrap-theme.css" type="text/css"
+		media="all" />
+
+	<title>Gerenciador de Senhas</title>
+</h:head>
+
+<h:body>
+
+	<div id="container" >
+		<div id="top" class="ui-widget-header ui-corner-all">
+			<ui:insert name="top">Gerenciador de Senhas</ui:insert>
+		</div>
+		<div id="menu">
+	      	<h:form id="formMenu">
+	           <p:menubar autoDisplay="false">
+                   <p:menuitem value="Cliente" url="Cliente.xhtml"/>
+                   <p:menuitem value="Gerente" url="Gerente.xhtml"/>
+	           </p:menubar>
+        	</h:form>
+		</div>
+        <div class="center_content ui-panel ui-widget ui-widget-content ui-corner-all" >
+            <ui:insert name="content">conteudo</ui:insert>
+        </div>	
+	</div>
+
+</h:body>
+
+</html>

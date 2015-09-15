@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="Template.xhtml">
+
+    <ui:define name="title">Gerenciamento de Produtos</ui:define>
+
+    <ui:define name="content">
+		
+		<h:form>
+			<p:panel header="Portal do Gerente">
+				<p:commandButton value="Chamar Senha" id="btnChamarSenha" update="panelProximaSenhaDialog, panelProximaSenha, listaSenhasNormais, listaSenhasPreferenciais" actionListener="#{gerenciarSenhas.chamarSenha}" styleClass="ui-priority-primary" oncomplete="PF('chamarSenhaDialog').show();"/>
+				
+				<p:commandButton value="Zerar Contador Senha Normal" id="btnZerarNormal" update="msg" actionListener="#{gerenciarSenhas.zerarContadorSenhaNormal}" styleClass="ui-priority-primary"/>
+				
+				<p:commandButton value="Zerar Contador Senha Preferencial" id="btnZerarPreferencial" update="msg" actionListener="#{gerenciarSenhas.zerarContadorSenhaPreferencial}" styleClass="ui-priority-primary"/>
+		
+				<p:dataTable id="listaSenhasPreferenciais" value="#{gerenciarSenhas.listaSenhasPreferenciais}" var="senha" emptyMessage="Não Há Senhas a serem chamadas!">
+		       		<f:facet name="header">
+		          		Senhas Preferenciais
+		       		</f:facet>
+		       		<p:column headerText="Senha">
+		     			<h:outputText value="#{senha.cdSenha}" />
+		  			</p:column>
+		  			<p:column headerText="Hora Chegada">
+		     			<h:outputText value="#{senha.dtHrGeracao}">
+                			<f:convertDateTime pattern="HH:mm" locale="pt_BR" timeZone="GMT-03:00"/>
+           				</h:outputText>
+		  			</p:column>
+		   		</p:dataTable>
+		   		
+		   		<p:dataTable id="listaSenhasNormais" value="#{gerenciarSenhas.listaSenhasNormais}" var="senha" emptyMessage="Não Há Senhas a serem chamadas!">
+		       		<f:facet name="header">
+		          		Senhas Normais
+		       		</f:facet>
+		       		<p:column headerText="Senha">
+		     			<h:outputText value="#{senha.cdSenha}" />
+		  			</p:column>
+		  			<p:column headerText="Hora Chegada">
+		     			<h:outputText value="#{senha.dtHrGeracao}">
+                			<f:convertDateTime pattern="HH:mm" locale="pt_BR" timeZone="GMT-03:00"/>
+           				</h:outputText>
+		  			</p:column>
+		   		</p:dataTable>
+				
+				<p:dialog header="Senha" widgetVar="chamarSenhaDialog" minHeight="40" resizable="false">
+					<p:outputLabel id="panelProximaSenhaDialog" value="#{gerenciarSenhas.proximaSenha.cdSenha}" />
+				</p:dialog>
+				
+				<p:notificationBar position="bottom" effect="slide" styleClass="top" widgetVar="bar" autoDisplay="true">
+					<p:outputLabel id="panelProximaSenha" style="font-size:36px;" value="SENHA: #{gerenciarSenhas.proximaSenha.cdSenha}" />
+				</p:notificationBar>
+		
+				<p:growl id="msg" life="2000" />
+			</p:panel>
+			
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

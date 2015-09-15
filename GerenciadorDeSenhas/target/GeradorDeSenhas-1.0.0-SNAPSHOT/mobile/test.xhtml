@@ -1,0 +1,96 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pm="http://primefaces.org/mobile" contentType="text/html"
+    renderKitId="PRIMEFACES_MOBILE">
+ 
+    <pm:page title="Components">
+ 
+ 
+        <!-- Main View -->
+        <pm:view id="main">
+ 
+            <pm:header title="Mobile" swatch="b" />
+ 
+            <pm:content>
+ 
+                <p:panelGrid columns="2" styleClass="ui-responsive">
+ 
+                    <p:outputPanel style="padding-right: 15px">
+                        <h:form>
+                            <p:dataList type="inset" styleClass="ui-li-custom">
+                                <f:facet name="header">Menu</f:facet>
+                                <f:attribute name="icon" value="false" />
+ 
+                                <h:outputLink value="#forms">Form</h:outputLink>
+                                <h:outputLink value="#datatable">Table</h:outputLink>
+ 
+                            </p:dataList>
+                        </h:form>
+                    </p:outputPanel>
+ 
+                </p:panelGrid>
+            </pm:content>
+        </pm:view>
+ 
+        <!-- Forms -->
+        <pm:view id="forms">
+            <pm:header title="Forms">
+                <f:facet name="left">
+                    <p:commandButton value="Home" action="pm:main" />
+                </f:facet>
+            </pm:header>
+ 
+            <pm:content>
+ 
+                <h:form id="jsfexample">
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">  
+               This is a basic form component 
+           </f:facet>
+                        <h:outputLabel for="key" value="Enter key" />
+                        <p:inputText id="key" value="#{manager.key}" />
+ 
+                        <h:outputLabel for="value" value="Enter value" />
+                        <p:inputText id="value" value="#{manager.value}" />
+ 
+                        <p:commandButton action="#{manager.save}" value="Save"
+                            icon="ui-icon-check" style="margin:0"
+                            update="@form,:datatableform:mydata" />
+ 
+                        <h:messages />
+                    </p:panelGrid>
+ 
+                </h:form>
+            </pm:content>
+        </pm:view>
+ 
+      <!-- DatatableView -->
+        <pm:view id="datatable">
+            <pm:header title="DataTable">
+                <f:facet name="left">
+                    <h:outputLink value="#main">Home</h:outputLink>
+                </f:facet>
+            </pm:header>
+            <pm:content>
+                <h:form id="datatableform">
+                    <p:dataTable value="#{manager.cacheList}" var="item" id="mydata"
+                        rowKey="#{item.key}">
+                        <p:column>
+                            <f:facet name="header">Key</f:facet>
+                            <h:outputText value="#{item.key}" />
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">Value</f:facet>
+                            <h:outputText value="#{item.value}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </pm:content>
+        </pm:view>
+ 
+    </pm:page>
+ 
+</f:view>
